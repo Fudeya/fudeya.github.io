@@ -33,5 +33,40 @@
 </body>
 </html>
 
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>觸碰縮放角色</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to right, #4facfe, #f093fb); /* 藍到粉 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #character {
+      width: 200px;
+      height: auto;
+      transition: transform 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    /* 滑鼠 hover + 點擊縮放 */
+    #character:hover,
+    #character:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <img id="character" src="idle.png" alt="角色">
+
+</body>
+</html>
+
 fudeya.github.io/
 index.html
