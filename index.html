@@ -1,75 +1,58 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>芙德亞小站</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      color: white;
-      background: linear-gradient(to right, #6a9cfb, #f7a7c2); /* 藍到粉的漸變 */
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>滑動頁面</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(to right, #4facfe, #f093fb);
+    min-height: 200vh; /* 2倍螢幕高度 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    h1 {
-      font-size: 3em;
-    }
+  #character {
+    width: 200px;
+    margin-top: 100px;
+    transition: transform 0.2s ease;
+    user-select: none;
+    touch-action: manipulation;
+  }
 
-    p {
-      font-size: 1.2em;
-    }
-  </style>
-</head>
-<body>
-  <h1>歡迎來到芙德亞小站！</h1>
-  <p>這裡目前沒有任何東西</p>
-</body>
-</html>
+  /* 點擊彈跳動畫 */
+  .bounce {
+    animation: bounce 0.3s ease;
+  }
 
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <title>觸碰縮放角色</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to right, #4facfe, #f093fb); /* 藍到粉 */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #character {
-      width: 200px;
-      height: auto;
-      transition: transform 0.2s ease;
-      touch-action: manipulation;
-    }
-
-    /* 滑鼠 hover + 點擊縮放 */
-    #character:hover,
-    #character:active {
-      transform: scale(0.95);
-    - name: Sleep for 0.3 seconds;
-    run: sleep 0.3s;
-      transform: scale(1.00);
-    }
-  </style>
+  @keyframes bounce {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+</style>
 </head>
 <body>
 
-  <img id="character" src="1touch.png" alt="角色">
+  <img id="character" src="idle.png" alt="角色">
+
+  <script>
+    const character = document.getElementById('character');
+
+    function triggerBounce() {
+      character.classList.add('bounce');
+      character.addEventListener('animationend', () => {
+        character.classList.remove('bounce');
+      }, { once: true });
+    }
+
+    character.addEventListener('click', triggerBounce);
+    character.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      triggerBounce();
+    });
+  </script>
 
 </body>
 </html>
-
-https://fudeya.github.io
-index.html
