@@ -33,27 +33,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    color: #fff;
     cursor: pointer;
     user-select: none;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     transition: transform 0.2s ease;
+    overflow: hidden;
   }
 
   .box:active {
     transform: scale(0.95);
   }
 
+  .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
   #numberBox {
     background: rgba(255, 255, 255, 0.1);
     cursor: default;
+    font-size: 24px;
   }
 </style>
+</head>
+<body>
+
+<h1>Group2's number selector</h1>
+<p>:D</p>
 
 <div class="container">
-  <div class="box" id="touchBox">touch</div>
+  <div class="box" id="touchBox">
+    <img src="1touch.png" alt="touch image">
+  </div>
   <div class="box" id="numberBox">?</div>
 </div>
 
@@ -70,14 +84,8 @@
   }
 
   // 點擊、觸碰都可以
-  touchBox.addEventListener('click', pickRandomNumber);
-  touchBox.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    pickRandomNumber();
-  });
-</script>
-
-</body>
-</html>
-
-index.html
+  touchBox.addEventListener('click', () => {
+    touchBox.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+      touchBox.style.transform = 'scale(1)';
+      pickRandomNum
