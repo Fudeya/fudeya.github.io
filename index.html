@@ -63,7 +63,7 @@
 </head>
 <body>
 
-<h1>Group2's number selector</h1>
+<h1>1,2,3,4,5 社長 副社長 沒選 裁霧 公關</h1>
 <p>:D</p>
 
 <div class="container">
@@ -71,20 +71,17 @@
     <img src="1touch.png" alt="touch image">
   </div>
   <div class="box" id="numberBox1">?</div>
-  <div class="box" id="numberBox2">?</div>
 </div>
 
 <script>
-  const numbers = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                    21, 22, 23, 24, 25, 26, 28, 29, 30, 32, 34, 35];
+  const numbers = [1, 2, 3, 4, 5,];
   const touchBox = document.getElementById('touchBox');
   const numberBox1 = document.getElementById('numberBox1');
-  const numberBox2 = document.getElementById('numberBox2');
 
   function pickTwoRandomNumbers() {
     const shuffled = [...numbers].sort(() => 0.5 - Math.random());
     numberBox1.textContent = shuffled[0];
-    numberBox2.textContent = shuffled[1];
+    
   }
 
   touchBox.addEventListener('click', () => {
