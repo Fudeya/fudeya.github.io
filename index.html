@@ -3,6 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <title>01抽取網</title>
+
+<style>
+body{
+  font-family:sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:linear-gradient(to right,#4facfe,#f093fb);
+  height:200vh;
+  margin:0;
+  color:#fff;
+}
+
+h1,p{
+  text-align:center;
+  margin:20px;
+}
+
+.container{
+  display:flex;
+  gap:20px;
+  margin-top:40px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.box{
+  width:100px;
+  height:100px;
+  border:2px solid #fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  user-select:none;
+  background:rgba(255,255,255,0.2);
+  border-radius:10px;
+  transition:transform 0.2s ease;
+  overflow:hidden;
+}
+
+.box:active{
+  transform:scale(0.95);
+}
+
+.box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+#numberBox1{
+  background:rgba(255,255,255,0.1);
+  cursor:default;
+  font-size:20px;
+  text-align:center;
+  padding:5px;
+}
+
+/* 輸入框 */
+.inputs{
+  margin-top:30px;
+  display:flex;
+  gap:10px;
+}
+
+input{
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  width:120px;
+  text-align:center;
+}
+</style>
+
+</head>
+<<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>01抽取網</title>
 <style>
   body {
     font-family: sans-serif;
@@ -96,3 +177,60 @@
 </html>
 index.html
 index.html
+
+<h1>選號...?</h1>
+<p>:D</p>
+
+<!-- 輸入區 -->
+<div class="inputs">
+<input id="inputA" placeholder="抽取A">
+<input id="inputB" placeholder="抽取B">
+</div>
+
+<!-- 抽取區 -->
+<div class="container">
+
+<div class="box" id="touchBox">
+<img src="1touch.png">
+</div>
+
+<div class="box" id="numberBox1">?</div>
+
+</div>
+
+<script>
+
+const touchBox=document.getElementById("touchBox")
+const numberBox1=document.getElementById("numberBox1")
+
+const inputA=document.getElementById("inputA")
+const inputB=document.getElementById("inputB")
+
+function pickRandom(){
+
+const options=[inputA.value,inputB.value]
+
+const random=Math.floor(Math.random()*options.length)
+
+numberBox1.textContent=options[random]
+
+}
+
+touchBox.addEventListener("click",()=>{
+
+touchBox.style.transform="scale(0.9)"
+
+setTimeout(()=>{
+
+touchBox.style.transform="scale(1)"
+
+pickRandom()
+
+},100)
+
+})
+
+</script>
+
+</body>
+</html>
