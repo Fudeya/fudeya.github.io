@@ -5,16 +5,16 @@
     <title>Arcaea報告用</title>
 
     <style>
-    /* 保留您原本的精美漸層背景與基本樣式 */
     body {
         font-family: sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
         background: linear-gradient(to right, #4facfe, #f093fb);
-        height: 100vh; /* 調整為 100vh 讓視覺更集中 */
+        height: 100vh; 
         margin: 0;
         color: #fff;
+        overflow: hidden; /* 鎖定螢幕，防止驚嚇時出現滾動條破壞氣氛 */
     }
 
     h1, p {
@@ -29,7 +29,6 @@
         justify-content: center;
     }
 
-    /* 您原本的圖片按鈕樣式 */
     .box {
         width: 100px;
         height: 100px;
@@ -44,7 +43,7 @@
     }
 
     .box:hover {
-        transform: scale(1.05); /* 加上小動畫，滑鼠懸停時放大 */
+        transform: scale(1.05);
     }
 
     .box img {
@@ -54,7 +53,6 @@
         border-radius: 8px;
     }
 
-    /* 您原本的輸出框樣式 */
     #result {
         margin-top: 40px;
         font-size: 22px;
@@ -63,14 +61,35 @@
         border-radius: 10px;
         min-height: 30px;
     }
-    </style> <!-- 【修正 1】正確閉合 style 標籤 -->
+
+    /* Jumpscare 全螢幕遮罩：全黑背景，層級最高 */
+    #jumpscare-overlay {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000; /* 變成純黑背景，增加壓迫感 */
+        z-index: 9999; /* 絕對最上層 */
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    /* 讓鬼圖強制撐滿整個螢幕，達到最大視覺衝擊 */
+    #jumpscare-overlay img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover; /* 或是 contain，cover 會強制填滿不留黑邊 */
+    }
+    </style>
 </head>
 <body>
 
     <h1>Arcaea 報告工具</h1>
     <p>請點擊下方搭檔（或圖片）查看詳細資訊</p>
 
-    <!-- 【修正 2】補上按鈕與圖片的 HTML 容器（請自行替換 img 的 src 圖片路徑） -->
     <div class="container">
         <div class="box" onclick="showReport('光 (Hikari) 是 Arcaea 的主角之一，擁有平衡型的技能。')">
             <img src="https://placehold.co/100" alt="光">
@@ -78,19 +97,43 @@
         <div class="box" onclick="showReport('對立 (Tairitsu) 是 Arcaea 的另一位主角，技能通常與挑戰或「溢出」相關。')">
             <img src="https://placehold.co/100" alt="對立">
         </div>
-        <div class="box" onclick="showReport('這裡可以寫第三個搭檔或報告的介紹內容。')">
+        
+        <!-- 第三個格子：假裝是正常的報告內容，完全不提圖片的事 -->
+        <div class="box" onclick="showReport('正在讀取第三位搭檔的歷史紀錄...'); startJumpscare();">
             <img src="https://placehold.co/100" alt="搭檔3">
         </div>
     </div>
 
-    <!-- 【修正 3】補上用來顯示結果的 div -->
     <div id="result">點擊上方方塊顯示報告內容...</div>
 
-    <!-- 【修正 4】補上控制點擊效果的 JavaScript -->
+    <!-- Jumpscare 全螢幕圖片容器 -->
+    <div id="jumpscare-overlay" onclick="closeJumpscare()">
+        <img src="無標題120_20260518041924.png" alt="Jumpscare">
+    </div>
+
+    <!-- 選擇性加入：驚嚇音效（把音效檔案放在同個資料夾，檔名改成 scream.mp3） -->
+    <!-- <audio id="scream-sound" src="scream.mp3"></audio> -->
+
     <script>
         function showReport(text) {
             document.getElementById('result').innerText = text;
         }
+
+        function startJumpscare() {
+            // 2 秒後（2000毫秒）毫無預警爆發
+            setTimeout(function() {
+                // 顯示全螢幕鬼圖
+                var overlay = document.getElementById('jumpscare-overlay');
+                overlay.style.display = 'flex'; 
+
+                // 如果你有準備音效，把下面兩行的註解「//」拿掉就能同步播放聲音
+                // var audio = document.getElementById('scream-sound');
+                // audio.play();
+            }, 2000); 
+        }
+
+        // 點擊畫面任意處可以解除驚嚇（留給自己的逃生門）
+        
     </script>
 
 </body>
