@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>01抽取器</title>
+<title>你確定這Arcaea報告？</title>
 
 <style>
 
@@ -81,14 +81,15 @@ border-radius:10px;
 
 <body>
 
-<h1>點擊抽取</h1>
+<h1>點擊抽取光或對立</h1>
 <p>⬇️</p>
-
+/*
 <!-- 輸入 -->
 <div class="inputs">
 <input id="inputA" placeholder="nameA (1)">
 <input id="inputB" placeholder="nameB (0)">
 </div>
+  */
 
 <!-- 抽取按鈕 -->
 <div class="container">
@@ -118,11 +119,11 @@ const nameB=inputB.value || "B"
 
 if(random===1){
 
-result.textContent=`${nameA}是1， ${nameB}是0`
+result.textContent=`光是1， 對立是0`
 
 }else{
 
-result.textContent=`${nameA}是0， ${nameB}是1`
+result.textContent=`對立是1， 光是1`
 
 }
 
